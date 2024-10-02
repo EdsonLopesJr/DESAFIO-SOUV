@@ -1,7 +1,7 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import eslintConfigPrettier, { rules } from 'eslint-config-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   { ignores: ['**/dist/*', '**/node_modules/*'] },
