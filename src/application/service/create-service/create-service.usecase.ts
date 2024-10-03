@@ -2,6 +2,8 @@ import { Service } from '../../../domain/entities/service.entity';
 import { ServiceGateway } from '../../../domain/gateway/service.gateway';
 import { Usecase } from '../../usecase';
 import { CreateServicePresenter } from './create-service.presenter';
+import { ServerError } from '../../../application/exception/server-error';
+import { InvalidParamError } from '../../../domain/exceptions/invalid-params-error';
 
 export type CreateServiceInputDto = {
   name: string;
@@ -25,15 +27,27 @@ export class CreateServiceUsecase implements Usecase<CreateServiceInputDto, Crea
 
   // Método que executa a lógica de criação do serviço
   public async execute({ name, description, icon }: CreateServiceInputDto): Promise<CreateServiceOutputDto> {
-    //o padrão de design Command
+    // Padrão de design Command
 
-    // Cria uma nova instância da entidade Service
-    const aService = Service.create(name, description, icon);
+    try {
+      // Cria uma nova instância da entidade Service
+      const aService = Service.create(name, description, icon);
 
-    // Persiste o serviço usando o gateway
-    await this.serviceGateway.save(aService);
+      // Persiste o serviço usando o gateway
+      await this.serviceGateway.save(aService);
 
-    // Apresenta a saída formatada usando o presenter
-    return CreateServicePresenter.present(aService);
+      // Apresenta a saída formatada usando o presenter
+      return CreateServicePresenter.present(aService);
+    } catch (error) {
+      // Lida com o erro de parâmetros inválidos
+      if (error instanceof InvalidParamError) {
+        throw new Error(error.message);
+      }
+      if (error instanceof ServerError) {
+        throw new ServerError();
+      }
+
+      throw error;
+    }
   }
 }
