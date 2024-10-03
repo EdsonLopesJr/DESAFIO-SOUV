@@ -19,7 +19,7 @@ export class Service {
     // Verifica se cada parâmetro é válido
     for (const [key, value] of Object.entries(params)) {
       if (!value) {
-        throw new InvalidParamError(key.charAt(0).toUpperCase() + key.slice(1)); // Lança o erro se o parâmetro for inválido
+        throw new InvalidParamError(key.charAt(0) + key.slice(1)); // Lança o erro se o parâmetro for inválido
       }
     }
 
