@@ -5,4 +5,5 @@ export interface ServiceGateway {
   // Método que deve ser implementado para salvar e listar serviço
   save(service: Service): Promise<void>;
   list(): Promise<Service[]>;
+  findById(id: string): Promise<Service | null>;
 }
