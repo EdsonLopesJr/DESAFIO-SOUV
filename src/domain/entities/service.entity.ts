@@ -1,3 +1,5 @@
+import { InvalidParamError } from '../exceptions/invalid-params-error';
+
 // Define um tipo ServiceProps que descreve as propriedades de um serviço
 export type ServiceProps = {
   id: string;
@@ -12,6 +14,15 @@ export class Service {
 
   // Método estático para criar um novo serviço com propriedades definidas
   public static create(name: string, description: string, icon: string) {
+    const params = { name, description, icon }; // Agrupa os parâmetros em um objeto
+
+    // Verifica se cada parâmetro é válido
+    for (const [key, value] of Object.entries(params)) {
+      if (!value) {
+        throw new InvalidParamError(key.charAt(0).toUpperCase() + key.slice(1)); // Lança o erro se o parâmetro for inválido
+      }
+    }
+
     return new Service({ id: crypto.randomUUID().toString(), name, description, icon });
   }
 
