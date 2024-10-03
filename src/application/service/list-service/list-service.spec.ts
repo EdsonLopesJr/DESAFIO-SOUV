@@ -1,6 +1,7 @@
 import { ServiceGateway } from '../../../domain/gateway/service.gateway';
 import { ListServiceUsecase, ListServiceOutputDto } from './list-service.usecase';
 import { Service } from '../../../domain/entities/service.entity';
+import { ServerError } from '../../exception/server-error';
 
 const mockServiceGateway: Partial<ServiceGateway> = {
   list: jest.fn()
@@ -36,5 +37,24 @@ describe('ListServiceUsecase', () => {
         { id: output.services[1].id, name: 'Service 2', description: 'Description 2', icon: 'icon2.png' }
       ]
     });
+  });
+
+  test('Deve retornar um array vazio se não houver serviços', async () => {
+    // Simula o retorno de um array vazio
+    mockServiceGateway.list = jest.fn().mockResolvedValueOnce([]);
+
+    // Executa o caso de uso
+    const output: ListServiceOutputDto = await usecase.execute();
+
+    // Verifica se o resultado contém um array vazio
+    expect(output).toEqual({ services: [] });
+  });
+
+  test('Deve lançar um erro de servidor se ocorrer um erro ao listar serviços', async () => {
+    // Simula uma falha no método list do gateway
+    mockServiceGateway.list = jest.fn().mockRejectedValueOnce(new ServerError());
+
+    // Espera que o caso de uso lance um ServerError
+    await expect(usecase.execute()).rejects.toThrow(ServerError);
   });
 });
