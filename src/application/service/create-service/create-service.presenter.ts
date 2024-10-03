@@ -1,4 +1,4 @@
-import { Service } from '../../../domain/entities/service.entity';
+import { Service } from '../../../domain/service/entities/service.entity';
 
 export interface CreateServicePresenterOutput {
   id: string;

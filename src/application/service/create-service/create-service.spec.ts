@@ -1,5 +1,5 @@
-import { InvalidParamError } from '../../../domain/exceptions/invalid-params-error';
-import { ServiceGateway } from '../../../domain/gateway/service.gateway';
+import { InvalidParamError } from '../../../domain/service/exceptions/invalid-params-error';
+import { ServiceGateway } from '../../../domain/service/gateway/service.gateway';
 import { ServerError } from '../../exception/server-error';
 import { CreateServiceInputDto, CreateServiceUsecase } from './create-service.usecase';
 

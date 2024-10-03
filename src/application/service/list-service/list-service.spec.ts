@@ -1,6 +1,6 @@
-import { ServiceGateway } from '../../../domain/gateway/service.gateway';
+import { ServiceGateway } from '../../../domain/service/gateway/service.gateway';
 import { ListServiceUsecase, ListServiceOutputDto } from './list-service.usecase';
-import { Service } from '../../../domain/entities/service.entity';
+import { Service } from '../../../domain/service/entities/service.entity';
 import { ServerError } from '../../exception/server-error';
 
 const mockServiceGateway: Partial<ServiceGateway> = {

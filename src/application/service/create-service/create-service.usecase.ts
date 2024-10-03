@@ -1,9 +1,9 @@
-import { Service } from '../../../domain/entities/service.entity';
-import { ServiceGateway } from '../../../domain/gateway/service.gateway';
+import { Service } from '../../../domain/service/entities/service.entity';
+import { ServiceGateway } from '../../../domain/service/gateway/service.gateway';
 import { Usecase } from '../../usecase';
 import { CreateServicePresenter } from './create-service.presenter';
 import { ServerError } from '../../../application/exception/server-error';
-import { InvalidParamError } from '../../../domain/exceptions/invalid-params-error';
+import { InvalidParamError } from '../../../domain/service/exceptions/invalid-params-error';
 
 export type CreateServiceInputDto = {
   name: string;

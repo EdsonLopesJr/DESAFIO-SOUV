@@ -1,4 +1,4 @@
-import { ServiceGateway } from '../../../domain/gateway/service.gateway';
+import { ServiceGateway } from '../../../domain/service/gateway/service.gateway';
 import { ServerError } from '../../exception/server-error';
 import { Usecase } from '../../usecase';
 import { ListServicePresenter } from './list-service.presenter';
