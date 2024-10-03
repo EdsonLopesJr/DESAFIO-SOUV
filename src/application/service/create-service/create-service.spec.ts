@@ -3,7 +3,7 @@ import { ServiceGateway } from '../../../domain/gateway/service.gateway';
 import { ServerError } from '../../exception/server-error';
 import { CreateServiceInputDto, CreateServiceUsecase } from './create-service.usecase';
 
-const mockServiceGateway: jest.Mocked<ServiceGateway> = {
+const mockServiceGateway: Partial<ServiceGateway> = {
   save: jest.fn()
 };
 
@@ -11,7 +11,7 @@ describe('CreateServiceUsecase', () => {
   let usecase: CreateServiceUsecase;
 
   beforeEach(() => {
-    usecase = CreateServiceUsecase.create(mockServiceGateway);
+    usecase = CreateServiceUsecase.create(mockServiceGateway as ServiceGateway);
   });
 
   test('Deve criar um serviço e retornar um id', async () => {
@@ -73,8 +73,9 @@ describe('CreateServiceUsecase', () => {
     };
 
     // Simula uma falha no método save do gateway
-    mockServiceGateway.save.mockRejectedValueOnce(new ServerError());
-
+    jest.spyOn(mockServiceGateway, 'save').mockImplementationOnce(() => {
+      throw new ServerError();
+    });
     // Espera que o caso de uso lance um ServerError
     await expect(usecase.execute(input)).rejects.toThrow(ServerError);
   });
