@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Service {
+  id          String @id
+  name        String
+  description String
+  icon        String
+
+  createdAt         DateTime            @default(now())
+  CalendarToService CalendarToService[]
+
+  @@map("services")
+}
+
+model Calendar {
+  id                String              @id
+  name              String
+  phone             String
+  timestamp         DateTime
+  CalendarToService CalendarToService[]
+
+  @@map("calendars")
+}
+
+model CalendarToService {
+  calendarId String   @map("calendar_id")
+  calendar   Calendar @relation(fields: [calendarId], references: [id])
+  serviceId  String   @map("service_id")
+  service    Service  @relation(fields: [serviceId], references: [id])
+
+  @@id([calendarId, serviceId])
+}
