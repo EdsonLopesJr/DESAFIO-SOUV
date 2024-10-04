@@ -4,12 +4,12 @@ import { Calendar } from '../../../domain/calendar/entities/calendar.entity';
 import { Service } from '../../../domain/service/entities/service.entity';
 
 // Classe que implementa o repositório para a entidade Calendar, utilizando o Prisma ORM.
-export class CalendarRepository implements CalendarGateway {
+export class CalendarRepositoryPrisma implements CalendarGateway {
   private constructor(private readonly prismaClient: PrismaClient) {}
 
-  // Método estático para criar uma instância do CalendarRepository.
+  // Método estático para criar uma instância do CalendarRepositoryPrisma.
   public static create(prismaClient: PrismaClient) {
-    return new CalendarRepository(prismaClient);
+    return new CalendarRepositoryPrisma(prismaClient);
   }
 
   // Método para salvar um novo calendário no banco de dados.
