@@ -10,11 +10,6 @@
 6. [Testes](#testes)
 7. [Configuração do Husky e Lint-Staged](#configuração-do-husky-e-lint-staged)
 8. [Estrutura de Pastas](#estrutura-de-pastas)
-9. [Configuração do Banco de Dados](#configuração-do-banco-de-dados)
-10. [Executando a Aplicação](#executando-a-aplicação)
-11. [Testes](#testes)
-12. [Configuração do Husky e Lint-Staged](#configuração-do-husky-e-lint-Staged)
-13. [Estrutura de Pastas](#estrutura-de-pastas)
 
 ## Introdução
 
@@ -23,9 +18,6 @@ Este documento tem como objetivo orientar você sobre como configurar e executar
 
 ## Pré-requisitos
 
-- **Node.js**
-- **npm**
-- **Git**
 - **Node.js**
 - **npm**
 - **Git**
@@ -42,13 +34,11 @@ Este documento tem como objetivo orientar você sobre como configurar e executar
 
 ```bash
 cd DESAFIO-SOUV-BACKEND
-cd DESAFIO-SOUV-BACKEND
 ```
 
 ### 3. Instalar as Dependências
 
 ```bash
-npm install
 npm install
 ```
 
