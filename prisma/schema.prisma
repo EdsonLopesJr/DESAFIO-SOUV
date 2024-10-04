@@ -37,3 +37,11 @@ model CalendarToService {
 
   @@id([calendarId, serviceId])
 }
+
+model Testimonial {
+  id      String @id
+  name    String
+  message String
+
+  @@map("testimonials")
+}
