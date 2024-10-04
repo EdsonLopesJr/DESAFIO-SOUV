@@ -40,11 +40,11 @@ export class ListServiceRoute implements Route {
     };
   }
 
-  getMethod(): HttpMethod {
+  public getMethod(): HttpMethod {
     return this.method;
   }
 
-  getPath(): string {
+  public getPath(): string {
     return this.path;
   }
 
