@@ -7,7 +7,7 @@ import {
 import { HttpMethod, Route } from '../route';
 import { MissingServiceError } from '../../../../../application/exception/missing-service-error';
 import { ServerError } from '../../../../../application/exception/server-error';
-import { InvalidParamError } from '../../../../../domain/service/exceptions/invalid-params-error';
+import { ServiceNotFoundError } from '../../../../../application/exception/service-not-found-error';
 
 export type CreateCalendarResponseDto = {
   id: string;
@@ -48,11 +48,7 @@ export class CreateCalendarRoute implements Route {
         // Retorna a resposta com status 201 e o corpo da resposta
         response.status(201).json(responseBody).send();
       } catch (error) {
-        if (error instanceof MissingServiceError) {
-          response.status(400).json({
-            message: error.message
-          });
-        } else if (error instanceof InvalidParamError) {
+        if (error instanceof MissingServiceError || error instanceof ServiceNotFoundError) {
           response.status(400).json({
             message: error.message
           });

@@ -1,8 +1,8 @@
 import { CreateCalendarUsecase } from './create-calendar.usecase';
-import { InvalidParamError } from '../../../domain/service/exceptions/invalid-params-error';
 import { CalendarGateway } from '../../../domain/calendar/gateway/calendar.gateway';
 import { ServiceGateway } from '../../../domain/service/gateway/service.gateway';
 import { Service } from '../../../domain/service/entities/service.entity';
+import { ServiceNotFoundError } from '../../exception/service-not-found-error';
 
 describe('CreateCalendarUsecase', () => {
   let createCalendarUsecase: CreateCalendarUsecase;
@@ -60,7 +60,7 @@ describe('CreateCalendarUsecase', () => {
     };
 
     // Espera que a execução do caso de uso lance um erro
-    await expect(createCalendarUsecase.execute(inputDto)).rejects.toThrow(new InvalidParamError('ServiceId'));
+    await expect(createCalendarUsecase.execute(inputDto)).rejects.toThrow(new ServiceNotFoundError('service-id-1'));
     expect(serviceGateway.findById).toHaveBeenCalledWith('service-id-1');
     expect(calendarGateway.save).not.toHaveBeenCalled();
   });
