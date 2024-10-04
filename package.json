@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/main.ts",
+    "start": "node dist/main.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
     "fix": "prettier \"src/***.ts\" --write && eslint --fix \"src/**/*.ts\"",
     "prepare": "husky",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
-    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:verbose": "jest",
     "test:unit": "npm test -- --watch",
     "test:staged": "npm test -- --findRelatedTests"
   },
@@ -30,6 +33,7 @@
     "prisma": "^5.20.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.8.0"
   },
