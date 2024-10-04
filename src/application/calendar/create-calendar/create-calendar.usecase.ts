@@ -5,6 +5,7 @@ import { CreateCalendarPresenter } from './create-calendar.presenter';
 import { InvalidParamError } from '../../../domain/service/exceptions/invalid-params-error';
 import { CalendarGateway } from '../../../domain/calendar/gateway/calendar.gateway';
 import { ServerError } from '../../exception/server-error';
+import { MissingServiceError } from '../../exception/missing-service-error';
 
 export type CreateCalendarInputDto = {
   name: string;
@@ -37,7 +38,13 @@ export class CreateCalendarUsecase implements Usecase<CreateCalendarInputDto, Cr
     timestamp
   }: CreateCalendarInputDto): Promise<CreateCalendarOutputDto> {
     try {
+      // Verifica se pelo menos um serviço foi selecionado
+      if (!serviceIds || serviceIds.length === 0) {
+        throw new MissingServiceError();
+      }
+
       // Busca os serviços pelo ID
+
       const services = [];
       for (const serviceId of serviceIds) {
         const service = await this.serviceGateway.findById(serviceId); // Garantir que retorna um objeto Service
@@ -59,6 +66,11 @@ export class CreateCalendarUsecase implements Usecase<CreateCalendarInputDto, Cr
       if (error instanceof InvalidParamError) {
         throw new Error(error.message);
       }
+
+      if (error instanceof MissingServiceError) {
+        throw new MissingServiceError();
+      }
+
       if (error instanceof ServerError) {
         throw new ServerError();
       }

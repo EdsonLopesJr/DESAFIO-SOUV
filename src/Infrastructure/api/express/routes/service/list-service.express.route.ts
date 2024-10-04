@@ -4,6 +4,7 @@ import {
   ListServiceUsecase
 } from '../../../../../application/service/list-service/list-service.usecase';
 import { HttpMethod, Route } from '../route';
+import { ServerError } from '../../../../../application/exception/server-error';
 
 export type ListServiceResponseDto = {
   services: {
@@ -29,14 +30,26 @@ export class ListServiceRoute implements Route {
   // Função que retorna o handler da rota, que é a função executada ao receber uma requisição
   public getHandler(): (request: Request, response: Response) => Promise<void> {
     return async (request: Request, response: Response) => {
-      // Executa o caso de uso de listagem de serviços
-      const output = await this.listServiceService.execute();
+      try {
+        // Executa o caso de uso de listagem de serviços
+        const output = await this.listServiceService.execute();
 
-      // Prepara a resposta com os dados dos serviços listados
-      const responseBody = this.present(output);
+        // Prepara a resposta com os dados dos serviços listados
+        const responseBody = this.present(output);
 
-      // Envia a resposta com status 200 (OK) e o corpo contendo os serviços listados
-      response.status(200).json(responseBody).send();
+        // Envia a resposta com status 200 (OK) e o corpo contendo os serviços listados
+        response.status(200).json(responseBody).send();
+      } catch (error) {
+        if (error instanceof ServerError) {
+          response.status(500).json({
+            message: error.message
+          });
+        } else {
+          response.status(500).json({
+            message: 'Unexpected error occurred'
+          });
+        }
+      }
     };
   }
 
