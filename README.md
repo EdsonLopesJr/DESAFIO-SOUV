@@ -8,11 +8,12 @@
 4. [Configuração do Banco de Dados](#configuração-do-banco-de-dados)
 5. [Executando a Aplicação](#executando-a-aplicação)
 6. [Testes](#testes)
-7. [Configuração do Husky e Lint-Staged](#configuração-do-husky-e-lint-Staged)
+7. [Configuração do Husky e Lint-Staged](#configuração-do-husky-e-lint-staged)
 8. [Estrutura de Pastas](#estrutura-de-pastas)
 
 ## Introdução
 
+Este documento tem como objetivo orientar você sobre como configurar e executar o projeto localmente. Siga os passos abaixo para garantir que tudo funcione corretamente.
 Este documento tem como objetivo orientar você sobre como configurar e executar o projeto localmente. Siga os passos abaixo para garantir que tudo funcione corretamente.
 
 ## Pré-requisitos
@@ -88,7 +89,7 @@ npm run build
 npm start
 ```
 
-### Testes
+## Testes
 
 #### Executando Testes
 
