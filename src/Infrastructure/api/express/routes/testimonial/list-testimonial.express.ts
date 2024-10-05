@@ -37,7 +37,7 @@ export class ListTestimonialRoute implements Route {
         const responseBody = this.present(output);
 
         // Envia a resposta com status 200 (OK) e o corpo contendo os depoimentos listados
-        response.status(200).json(responseBody).send();
+        response.status(200).json(responseBody);
       } catch (error) {
         if (error instanceof ServerError) {
           response.status(500).json({

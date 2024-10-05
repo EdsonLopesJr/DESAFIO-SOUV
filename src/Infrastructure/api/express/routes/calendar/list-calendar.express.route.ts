@@ -50,7 +50,7 @@ export class ListCalendarRoute implements Route {
         const responseBody = this.present(output);
 
         // Retorna a resposta com status 200 e o corpo da resposta.
-        response.status(200).json(responseBody).send();
+        response.status(200).json(responseBody);
       } catch (error) {
         if (error instanceof ServerError) {
           response.status(500).json({

@@ -46,7 +46,7 @@ export class CreateCalendarRoute implements Route {
         const responseBody = this.present(output);
 
         // Retorna a resposta com status 201 e o corpo da resposta
-        response.status(201).json(responseBody).send();
+        response.status(201).json(responseBody);
       } catch (error) {
         if (error instanceof MissingServiceError || error instanceof ServiceNotFoundError) {
           response.status(400).json({

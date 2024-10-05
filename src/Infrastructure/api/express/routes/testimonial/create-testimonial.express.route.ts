@@ -44,7 +44,7 @@ export class CreateTestimonialRoute implements Route {
 
         const responseBody = this.present(output);
 
-        response.status(201).json(responseBody).send();
+        response.status(201).json(responseBody);
       } catch (error) {
         if (error instanceof InvalidParamError) {
           response.status(400).json({
