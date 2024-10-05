@@ -1,6 +1,7 @@
 import { Api } from '../api';
 import express, { Express } from 'express';
 import { Route } from './routes/route';
+import cors from 'cors';
 
 // Classe que implementa a interface Api usando Express
 export class ApiExpress implements Api {
@@ -9,6 +10,7 @@ export class ApiExpress implements Api {
   private constructor(routes: Route[]) {
     this.app = express();
     this.app.use(express.json());
+    this.app.use(cors());
     this.addRoutes(routes);
   }
 
