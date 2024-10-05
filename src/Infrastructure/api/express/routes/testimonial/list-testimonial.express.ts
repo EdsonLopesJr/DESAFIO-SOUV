@@ -11,6 +11,7 @@ export type ListTestimonialResponseDto = {
     id: string;
     name: string;
     message: string;
+    profile: string | undefined;
   }[];
 };
 
@@ -66,7 +67,8 @@ export class ListTestimonialRoute implements Route {
       testimonials: input.testimonials.map((t) => ({
         id: t.id,
         name: t.name,
-        message: t.message
+        message: t.message,
+        profile: t.profile
       }))
     };
 

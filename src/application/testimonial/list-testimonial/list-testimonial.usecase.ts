@@ -10,6 +10,7 @@ export type ListTestimonialOutputDto = {
     id: string;
     name: string;
     message: string;
+    profile: string | undefined;
   }[];
 };
 

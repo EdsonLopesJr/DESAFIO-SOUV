@@ -8,6 +8,7 @@ import { CreateTestimonialPresenter } from './create-testimonial.present';
 export type CreateTestimonialInputDto = {
   name: string;
   message: string;
+  profile: string | undefined;
 };
 
 export type CreateTestimonialOutputDto = {
@@ -21,9 +22,9 @@ export class CreateTestimonialUsecase implements Usecase<CreateTestimonialInputD
     return new CreateTestimonialUsecase(testimonial);
   }
 
-  public async execute({ name, message }: CreateTestimonialInputDto): Promise<CreateTestimonialOutputDto> {
+  public async execute({ name, message, profile }: CreateTestimonialInputDto): Promise<CreateTestimonialOutputDto> {
     try {
-      const testimonial = Testimonial.create(name, message);
+      const testimonial = Testimonial.create(name, message, profile);
 
       await this.testimonialGateway.save(testimonial);
 

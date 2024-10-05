@@ -4,6 +4,7 @@ export interface ListTestimonialPresenterOutput {
   id: string;
   name: string;
   message: string;
+  profile: string | undefined;
 }
 
 // Classe responsável por apresentar a saída do caso de uso da listagem de serviço
@@ -15,7 +16,8 @@ export class ListTestimonialPresenter {
         return {
           id: t.id,
           name: t.name,
-          message: t.message
+          message: t.message,
+          profile: t.profile
         };
       })
     };

@@ -4,12 +4,13 @@ export type TestimonialProps = {
   id: string;
   name: string;
   message: string;
+  profile: string | undefined;
 };
 
 export class Testimonial {
   private constructor(private props: TestimonialProps) {}
 
-  public static create(name: string, message: string) {
+  public static create(name: string, message: string, profile?: string) {
     const params = { name, message }; // Agrupa os parâmetros em um objeto
 
     // Verifica se cada parâmetro é válido
@@ -22,7 +23,8 @@ export class Testimonial {
     return new Testimonial({
       id: crypto.randomUUID().toString(),
       name,
-      message
+      message,
+      profile: profile ?? undefined
     });
   }
 
@@ -40,5 +42,9 @@ export class Testimonial {
 
   public get message() {
     return this.props.message;
+  }
+
+  public get profile() {
+    return this.props.profile;
   }
 }

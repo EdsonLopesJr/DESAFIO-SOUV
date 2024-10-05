@@ -13,7 +13,8 @@ export class TestimonialRepositoryPrisma implements TestimonialGateway {
     const data = {
       id: testimonial.id,
       name: testimonial.name,
-      message: testimonial.message
+      message: testimonial.message,
+      profile: testimonial.profile
     };
 
     await this.prismaClient.testimonial.create({ data });
@@ -26,7 +27,8 @@ export class TestimonialRepositoryPrisma implements TestimonialGateway {
       const testimonial = Testimonial.with({
         id: t.id,
         name: t.name,
-        message: t.message
+        message: t.message,
+        profile: t.profile ?? undefined
       });
 
       return testimonial;

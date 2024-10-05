@@ -39,9 +39,10 @@ model CalendarToService {
 }
 
 model Testimonial {
-  id      String @id
+  id      String  @id
   name    String
   message String
+  profile String?
 
   @@map("testimonials")
 }

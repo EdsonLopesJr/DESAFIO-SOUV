@@ -15,12 +15,13 @@ describe('CreateTestimonialUsecase', () => {
   });
 
   test('Deve criar um depoimento e retornar um id', async () => {
-    const { name, message }: CreateTestimonialInputDto = {
+    const { name, message, profile }: CreateTestimonialInputDto = {
       name: 'Teste Testimonial',
-      message: 'messagem'
+      message: 'messagem',
+      profile: 'photo'
     };
 
-    const output = await usecase.execute({ name, message });
+    const output = await usecase.execute({ name, message, profile });
 
     // Verifica se o depoimento foi salvo
     expect(mockTestimonialGateway.save).toHaveBeenCalled();
@@ -35,7 +36,8 @@ describe('CreateTestimonialUsecase', () => {
   test('Deve lançar um erro se o nome do depoimento estiver vazio', async () => {
     const input: CreateTestimonialInputDto = {
       name: '', // Nome vazio
-      message: 'message'
+      message: 'message',
+      profile: 'photo'
     };
 
     // Espera que o caso de uso lance um InvalidParamError com o parâmetro 'name'
@@ -45,7 +47,8 @@ describe('CreateTestimonialUsecase', () => {
   test('Deve lançar um erro se a descrição do depoimento estiver vazia', async () => {
     const input: CreateTestimonialInputDto = {
       name: 'Teste Testimonial',
-      message: ''
+      message: '',
+      profile: 'photo'
     };
 
     // Espera que o caso de uso lance um InvalidParamError com o parâmetro 'description'
@@ -55,7 +58,8 @@ describe('CreateTestimonialUsecase', () => {
   test('Deve lançar um erro de servidor se ocorrer um erro ao salvar o depoimento', async () => {
     const input: CreateTestimonialInputDto = {
       name: 'Teste Testimonial',
-      message: 'Este é um depoimento de teste'
+      message: 'Este é um depoimento de teste',
+      profile: 'photo'
     };
 
     // Simula uma falha no método save do gateway

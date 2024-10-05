@@ -33,11 +33,12 @@ export class CreateTestimonialRoute implements Route {
   public getHandler(): (request: Request, response: Response) => Promise<void> {
     return async (request: Request, response: Response) => {
       try {
-        const { name, message } = request.body;
+        const { name, message, profile } = request.body;
 
         const input: CreateTestimonialInputDto = {
           name,
-          message
+          message,
+          profile: profile ?? undefined
         };
 
         const output: CreateTestimonialResponseDto = await this.createTestimonialService.execute(input);
