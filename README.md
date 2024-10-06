@@ -10,6 +10,7 @@
 6. [Testes](#testes)
 7. [Configuração do Husky e Lint-Staged](#configuração-do-husky-e-lint-staged)
 8. [Estrutura de Pastas](#estrutura-de-pastas)
+9. [Deploy](#deploy)
 
 ## Introdução
 
@@ -144,3 +145,9 @@ O projeto segue princípios de SOLID, Clean Architecture e Design Patterns, como
 ├── package.json          # Dependências e scripts do projeto
 └── tsconfig.json         # Configurações do TypeScript
 ```
+
+## Deploy
+
+Este projeto foi implantado na plataforma Render. Você pode acessar a versão ao vivo pelo seguinte link:
+
+[Link para o Deploy](https://desafio-souv-backend.onrender.com)
