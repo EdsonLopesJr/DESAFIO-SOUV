@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/main.js",
     "start:dev": "ts-node-dev --respawn --transpile-only src/main.ts",
-    "build": "tsc --build",
+    "build": "prisma generate && tsc --build",
     "clean": "tsc --build --clean",
     "fix": "prettier \"src/***.ts\" --write && eslint --fix \"src/**/*.ts\"",
     "prepare": "husky",
